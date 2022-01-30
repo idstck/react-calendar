@@ -1,4 +1,7 @@
 import React from 'react'
+import DatePicker from 'react-datepicker'
+
+import 'react-datepicker/dist/react-datepicker.css'
 
 const EventForm = () => {
   return (
@@ -53,9 +56,11 @@ const EventForm = () => {
                     <label htmlFor='' className='form-label'>
                       Start
                     </label>
-                    <input
-                      type='date'
-                      name='date_start'
+                    <DatePicker
+                      showTimeSelect
+                      timeFormat={'p'}
+                      timeIntervals={1}
+                      dateFormat='Pp'
                       className='form-control'
                     />
                   </div>
@@ -63,9 +68,11 @@ const EventForm = () => {
                     <label htmlFor='' className='form-label'>
                       End
                     </label>
-                    <input
-                      type='date'
-                      name='date_end'
+                    <DatePicker
+                      showTimeSelect
+                      timeFormat={'p'}
+                      timeIntervals={1}
+                      dateFormat='Pp'
                       className='form-control'
                     />
                   </div>
