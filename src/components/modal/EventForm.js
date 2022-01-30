@@ -15,7 +15,7 @@ const EventForm = () => {
         <div className='modal-content'>
           <div className='modal-header'>
             <h5 className='modal-title' id='staticBackdropLabel'>
-              Modal title
+              Event Form
             </h5>
             <button
               type='button'
@@ -24,7 +24,66 @@ const EventForm = () => {
               aria-label='Close'
             ></button>
           </div>
-          <div className='modal-body'>...</div>
+          <div className='modal-body'>
+            <form action=''>
+              <div className='mb-3'>
+                <label htmlFor='' className='form-label'>
+                  Event Title
+                </label>
+                <input
+                  type='text'
+                  name='event_title'
+                  placeholder='Enter Title'
+                  className='form-control'
+                />
+              </div>
+              <div className='mb-3 form-check'>
+                <input
+                  type='checkbox'
+                  name='checkbox'
+                  className='form-check-input'
+                />
+                <label htmlFor='' className='form-label'>
+                  All-day event? (Optional)
+                </label>
+              </div>
+              <div className='mb-3'>
+                <div className='row'>
+                  <div className='col'>
+                    <label htmlFor='' className='form-label'>
+                      Start
+                    </label>
+                    <input
+                      type='date'
+                      name='date_start'
+                      className='form-control'
+                    />
+                  </div>
+                  <div className='col'>
+                    <label htmlFor='' className='form-label'>
+                      End
+                    </label>
+                    <input
+                      type='date'
+                      name='date_end'
+                      className='form-control'
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className='mb-3'>
+                <label htmlFor='' className='form-label'>
+                  Choose Event Color
+                </label>
+                <select name='' id='' className='form-control'>
+                  <option value=''>Select Color</option>
+                  <option value=''>Primary</option>
+                  <option value=''>Success</option>
+                  <option value=''>Danger</option>
+                </select>
+              </div>
+            </form>
+          </div>
           <div className='modal-footer'>
             <button
               type='button'
@@ -34,7 +93,7 @@ const EventForm = () => {
               Close
             </button>
             <button type='button' className='btn btn-primary'>
-              Understood
+              Save
             </button>
           </div>
         </div>
