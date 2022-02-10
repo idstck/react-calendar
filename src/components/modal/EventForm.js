@@ -3,14 +3,29 @@ import DatePicker from 'react-datepicker'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
-const EventForm = () => {
+const EventForm = (props) => {
+  const {
+    eventTitle,
+    dateStart,
+    dateEnd,
+    checkbox,
+    colorSelected,
+    colorsOption,
+    eventTitleChange,
+    checkboxChange,
+    colorChange,
+    dateChange,
+    eventSubmit,
+    isShowTime,
+  } = props
+
   return (
     <div
       id='create-event'
       className='modal fade'
       data-bs-backdrop='static'
       data-bs-keyboard='false'
-      tabindex='-1'
+      tabIndex='-1'
       aria-labelledby='staticBackdropLabel'
       aria-hidden='true'
     >
@@ -36,6 +51,8 @@ const EventForm = () => {
                 <input
                   type='text'
                   name='event_title'
+                  value={eventTitle}
+                  onChange={eventTitleChange}
                   placeholder='Enter Title'
                   className='form-control'
                 />
@@ -44,6 +61,8 @@ const EventForm = () => {
                 <input
                   type='checkbox'
                   name='checkbox'
+                  value={checkbox}
+                  onChange={checkboxChange}
                   className='form-check-input'
                 />
                 <label htmlFor='' className='form-label'>
@@ -56,25 +75,47 @@ const EventForm = () => {
                     <label htmlFor='' className='form-label'>
                       Start
                     </label>
-                    <DatePicker
-                      showTimeSelect
-                      timeFormat={'p'}
-                      timeIntervals={1}
-                      dateFormat='Pp'
-                      className='form-control'
-                    />
+                    {!isShowTime ? (
+                      <DatePicker
+                        selected={dateStart}
+                        onChange={dateChange('start')}
+                        showTimeSelect
+                        timeFormat={'p'}
+                        timeIntervals={1}
+                        dateFormat='Pp'
+                        className='form-control'
+                      />
+                    ) : (
+                      <DatePicker
+                        selected={dateStart}
+                        onChange={dateChange('start')}
+                        dateFormat='Pp'
+                        className='form-control'
+                      />
+                    )}
                   </div>
                   <div className='col'>
                     <label htmlFor='' className='form-label'>
                       End
                     </label>
-                    <DatePicker
-                      showTimeSelect
-                      timeFormat={'p'}
-                      timeIntervals={1}
-                      dateFormat='Pp'
-                      className='form-control'
-                    />
+                    {!isShowTime ? (
+                      <DatePicker
+                        selected={dateEnd}
+                        onChange={dateChange('end')}
+                        showTimeSelect
+                        timeFormat={'p'}
+                        timeIntervals={1}
+                        dateFormat='Pp'
+                        className='form-control'
+                      />
+                    ) : (
+                      <DatePicker
+                        selected={dateEnd}
+                        onChange={dateChange('end')}
+                        dateFormat='Pp'
+                        className='form-control'
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -82,11 +123,21 @@ const EventForm = () => {
                 <label htmlFor='' className='form-label'>
                   Choose Event Color
                 </label>
-                <select name='' id='' className='form-control'>
-                  <option value=''>Select Color</option>
-                  <option value=''>Primary</option>
-                  <option value=''>Success</option>
-                  <option value=''>Danger</option>
+                <select
+                  name='event_color'
+                  id=''
+                  className='form-control'
+                  onChange={colorChange}
+                >
+                  {colorsOption.map((color) => (
+                    <option
+                      value={color.toLowerCase()}
+                      key={color}
+                      defaultValue={colorSelected === color ? 'selected' : ''}
+                    >
+                      {color.charAt(0).toUpperCase() + color.slice(1)}
+                    </option>
+                  ))}
                 </select>
               </div>
             </form>
@@ -99,7 +150,13 @@ const EventForm = () => {
             >
               Close
             </button>
-            <button type='button' className='btn btn-primary'>
+            <button
+              onClick={eventSubmit}
+              disabled={!eventTitle || !dateStart || !dateEnd}
+              type='button'
+              data-bs-dismiss='modal'
+              className='btn btn-primary'
+            >
               Save
             </button>
           </div>
