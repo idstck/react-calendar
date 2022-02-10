@@ -133,7 +133,7 @@ const EventForm = (props) => {
                     <option
                       value={color.toLowerCase()}
                       key={color}
-                      defaultValue={colorSelected === color ? 'selected' : ''}
+                      selected={colorSelected === color ? 'selected' : ''}
                     >
                       {color.charAt(0).toUpperCase() + color.slice(1)}
                     </option>
