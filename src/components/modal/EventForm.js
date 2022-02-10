@@ -129,6 +129,7 @@ const EventForm = (props) => {
                   className='form-control'
                   onChange={colorChange}
                 >
+                  <option value='-'> - </option>
                   {colorsOption.map((color) => (
                     <option
                       value={color.toLowerCase()}
