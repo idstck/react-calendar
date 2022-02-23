@@ -10,6 +10,25 @@ const EventCreate = () => {
   const [dateEnd, setDateEnd] = useState(new Date())
   const [colorSelected, setColorSelected] = useState('')
 
+  const colorsOption = [
+    {
+      title: 'Blue',
+      hex: '#0d6efd',
+    },
+    {
+      title: 'Green',
+      hex: '#198754',
+    },
+    {
+      title: 'Yellow',
+      hex: '#FFC107',
+    },
+    {
+      title: 'Red',
+      hex: '#dc3545',
+    },
+  ]
+
   const onEventTitleChange = (event) => {
     setEventTitle(event.target.value)
   }
@@ -63,9 +82,19 @@ const EventCreate = () => {
     return event
   }
 
+  const reset = () => {
+    setEventTitle('')
+    setCheckbox(false)
+    setIsShowTime(false)
+    setDateStart(new Date())
+    setDateEnd(new Date())
+    setColorSelected('')
+  }
+
   const eventSubmit = () => {
     const event = setEvent(1)
     console.log(event)
+    reset()
   }
 
   return (
@@ -75,7 +104,7 @@ const EventCreate = () => {
       dateEnd={dateEnd}
       checkbox={checkbox}
       colorSelected={colorSelected}
-      colorsOption={['primary', 'success', 'danger']}
+      colorsOption={colorsOption}
       eventTitleChange={onEventTitleChange}
       checkboxChange={onCheckboxChange}
       colorChange={onColorChange}
