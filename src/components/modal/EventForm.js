@@ -128,14 +128,11 @@ const EventForm = (props) => {
                   id=''
                   className='form-control'
                   onChange={colorChange}
+                  value={colorSelected}
                 >
                   <option value='-'> - </option>
                   {colorsOption.map((color) => (
-                    <option
-                      value={color.toLowerCase()}
-                      key={color}
-                      selected={colorSelected === color ? 'selected' : ''}
-                    >
+                    <option value={color.toLowerCase()} key={color}>
                       {color.charAt(0).toUpperCase() + color.slice(1)}
                     </option>
                   ))}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import moment from 'moment'
 import EventForm from './EventForm'
 
 const EventCreate = () => {
@@ -39,6 +40,34 @@ const EventCreate = () => {
     }
   }
 
+  const setEvent = (id) => {
+    let start = ''
+    let end = ''
+    if (checkbox) {
+      start = `${moment(dateStart).format('YYYY-MM-DD')}`
+      end = `${moment(dateEnd).format('YYYY-MM-DD')}`
+    } else {
+      start = `${moment(dateStart).format()}`
+      end = `${moment(dateEnd).format()}`
+    }
+
+    const event = {
+      id,
+      title: eventTitle,
+      start,
+      end,
+      allDay: checkbox,
+      color: colorSelected,
+    }
+
+    return event
+  }
+
+  const eventSubmit = () => {
+    const event = setEvent(1)
+    console.log(event)
+  }
+
   return (
     <EventForm
       eventTitle={eventTitle}
@@ -52,6 +81,7 @@ const EventCreate = () => {
       colorChange={onColorChange}
       dateChange={onDateChange}
       isShowTime={isShowTime}
+      eventSubmit={eventSubmit}
     />
   )
 }
