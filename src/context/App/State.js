@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
 import { useLocalStorage } from '../../hook/storage'
-import { ADD_EVENT } from '../types'
+import { ADD_EVENT, GET_EVENTS } from '../types'
 import AppContext from './Context'
 import AppReducer from './Reducer'
 
@@ -23,12 +23,22 @@ const AppState = (props) => {
     })
   }
 
+  const getEvents = () => {
+    if (item) {
+      dispatch({
+        type: GET_EVENTS,
+        payload: item,
+      })
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
         events: state.events,
         selectedEvent: state.selectedEvent,
         addEvent,
+        getEvents,
       }}
     >
       {props.children}

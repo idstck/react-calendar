@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -7,7 +7,11 @@ import AppContext from '../../context/App/Context'
 
 const Calendar = () => {
   const appContext = useContext(AppContext)
-  const { events } = appContext
+  const { events, getEvents } = appContext
+
+  useEffect(() => {
+    getEvents()
+  }, [events])
 
   return (
     <div className='col-9'>
