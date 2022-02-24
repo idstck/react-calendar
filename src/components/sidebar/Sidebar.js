@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import EventCreate from '../modal/EventCreate'
+import EventSelected from '../modal/EventSelected'
 import AppContext from '../../context/App/Context'
 
 const Sidebar = () => {
@@ -26,6 +27,8 @@ const Sidebar = () => {
               style={{ backgroundColor: event.color }}
               key={index}
               onClick={() => selectEvent(event)}
+              data-bs-toggle='modal'
+              data-bs-target='#select-event'
             >
               {event.title}
             </div>
@@ -36,6 +39,7 @@ const Sidebar = () => {
       </div>
 
       <EventCreate />
+      <EventSelected />
     </div>
   )
 }
