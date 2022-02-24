@@ -12,7 +12,7 @@ const EventEdit = () => {
   const [colorSelected, setColorSelected] = useState('')
 
   const appContext = useContext(AppContext)
-  const { events, selectedEvent } = appContext
+  const { events, selectedEvent, editEvent } = appContext
 
   useEffect(() => {
     if (Object.keys(selectedEvent).length > 0) {
@@ -116,8 +116,9 @@ const EventEdit = () => {
   }
 
   const eventSubmit = () => {
-    const event = setEvent(events.length + 1)
+    const event = setEvent(selectedEvent.id)
     console.log(event)
+    editEvent(event)
     reset()
   }
 

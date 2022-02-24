@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
 import { useLocalStorage } from '../../hook/storage'
-import { ADD_EVENT, GET_EVENTS, SELECT_EVENT } from '../types'
+import { ADD_EVENT, EDIT_EVENT, GET_EVENTS, SELECT_EVENT } from '../types'
 import AppContext from './Context'
 import AppReducer from './Reducer'
 
@@ -41,6 +41,17 @@ const AppState = (props) => {
     })
   }
 
+  const editEvent = (event) => {
+    const newEvents = item.map((item) => {
+      return item.id === event.id ? event : item
+    })
+    setValue(newEvents)
+    dispatch({
+      type: EDIT_EVENT,
+      payload: newEvents,
+    })
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -49,6 +60,7 @@ const AppState = (props) => {
         addEvent,
         getEvents,
         selectEvent,
+        editEvent,
       }}
     >
       {props.children}

@@ -63,6 +63,7 @@ const EventForm = (props) => {
                   type='checkbox'
                   name='checkbox'
                   value={checkbox}
+                  checked={checkbox}
                   onChange={checkboxChange}
                   className='form-check-input'
                 />
