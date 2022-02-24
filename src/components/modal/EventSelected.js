@@ -23,22 +23,29 @@ const EventSelected = () => {
           </div>
           <div className='modal-body'>
             <table className='table'>
-              <tr>
-                <th>Date Start</th>
-                <td>{selectedEvent.start}</td>
-              </tr>
-              <tr>
-                <th>Date End</th>
-                <td>{selectedEvent.end}</td>
-              </tr>
-              <tr>
-                <th>All Day?</th>
-                <td>{selectedEvent.allDay ? 'Yes' : 'No'}</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <th>Date Start</th>
+                  <td>{selectedEvent.start}</td>
+                </tr>
+                <tr>
+                  <th>Date End</th>
+                  <td>{selectedEvent.end}</td>
+                </tr>
+                <tr>
+                  <th>All Day?</th>
+                  <td>{selectedEvent.allDay ? 'Yes' : 'No'}</td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div className='modal-footer d-flex justify-content-evenly'>
-            <button className='btn btn-primary' data-bs-dismiss='modal'>
+            <button
+              className='btn btn-primary'
+              data-bs-toggle='modal'
+              data-bs-target='#edit-event'
+              data-bs-dismiss='modal'
+            >
               Edit Event
             </button>
             <span className='text-white'>Or</span>

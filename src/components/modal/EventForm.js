@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 const EventForm = (props) => {
   const {
+    modalId,
     eventTitle,
     dateStart,
     dateEnd,
@@ -21,7 +22,7 @@ const EventForm = (props) => {
 
   return (
     <div
-      id='create-event'
+      id={modalId}
       className='modal fade'
       data-bs-backdrop='static'
       data-bs-keyboard='false'

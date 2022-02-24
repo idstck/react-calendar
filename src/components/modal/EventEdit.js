@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import moment from 'moment'
 import EventForm from './EventForm'
 import AppContext from '../../context/App/Context'
 
-const EventCreate = () => {
+const EventEdit = () => {
   const [eventTitle, setEventTitle] = useState('')
   const [checkbox, setCheckbox] = useState(false)
   const [isShowTime, setIsShowTime] = useState(false)
@@ -12,7 +12,27 @@ const EventCreate = () => {
   const [colorSelected, setColorSelected] = useState('')
 
   const appContext = useContext(AppContext)
-  const { events, addEvent } = appContext
+  const { events, selectedEvent } = appContext
+
+  useEffect(() => {
+    if (Object.keys(selectedEvent).length > 0) {
+      setColorSelected(selectedEvent.color)
+      setEventTitle(selectedEvent.title)
+      setCheckbox(selectedEvent.allDay)
+      let start = ''
+      let end = ''
+      if (!selectedEvent.allDay) {
+        setIsShowTime(false)
+        start = `${moment(new Date(selectedEvent.start)).format()}`
+        end = `${moment(new Date(selectedEvent.end)).format()}`
+      } else {
+        start = `${moment(new Date(selectedEvent.start)).format('YYYY-MM-DD')}`
+        end = `${moment(new Date(selectedEvent.end)).format('YYYY-MM-DD')}`
+      }
+      setDateStart(new Date(start))
+      setDateEnd(new Date(end))
+    }
+  }, [selectedEvent, events])
 
   const colorsOption = [
     {
@@ -98,13 +118,12 @@ const EventCreate = () => {
   const eventSubmit = () => {
     const event = setEvent(events.length + 1)
     console.log(event)
-    addEvent(event)
     reset()
   }
 
   return (
     <EventForm
-      modalId='create-event'
+      modalId='edit-event'
       eventTitle={eventTitle}
       dateStart={dateStart}
       dateEnd={dateEnd}
@@ -121,4 +140,4 @@ const EventCreate = () => {
   )
 }
 
-export default EventCreate
+export default EventEdit

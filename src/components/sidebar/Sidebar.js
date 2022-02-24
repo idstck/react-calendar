@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import EventCreate from '../modal/EventCreate'
 import EventSelected from '../modal/EventSelected'
 import AppContext from '../../context/App/Context'
+import EventEdit from '../modal/EventEdit'
 
 const Sidebar = () => {
   const appContext = useContext(AppContext)
@@ -39,6 +40,7 @@ const Sidebar = () => {
       </div>
 
       <EventCreate />
+      <EventEdit />
       <EventSelected />
     </div>
   )
