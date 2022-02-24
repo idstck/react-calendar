@@ -4,7 +4,7 @@ import AppContext from '../../context/App/Context'
 
 const Sidebar = () => {
   const appContext = useContext(AppContext)
-  const { events } = appContext
+  const { events, selectEvent } = appContext
 
   return (
     <div className='col-3'>
@@ -25,6 +25,7 @@ const Sidebar = () => {
               className='my-1 p-2 text-white'
               style={{ backgroundColor: event.color }}
               key={index}
+              onClick={() => selectEvent(event)}
             >
               {event.title}
             </div>
