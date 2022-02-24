@@ -3,7 +3,12 @@ import AppContext from '../../context/App/Context'
 
 const EventSelected = () => {
   const appContext = useContext(AppContext)
-  const { selectedEvent } = appContext
+  const { selectedEvent, selectEvent, deleteEvent } = appContext
+
+  const deleteEventHandler = (event) => {
+    deleteEvent(event)
+    selectEvent({})
+  }
 
   return (
     <div className='modal' tabIndex='-1' id='select-event'>
@@ -49,7 +54,11 @@ const EventSelected = () => {
               Edit Event
             </button>
             <span className='text-white'>Or</span>
-            <button className='btn btn-danger' data-bs-dismiss='modal'>
+            <button
+              className='btn btn-danger'
+              onClick={() => deleteEventHandler(selectedEvent)}
+              data-bs-dismiss='modal'
+            >
               Delete Event
             </button>
           </div>
